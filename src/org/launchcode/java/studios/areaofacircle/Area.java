@@ -9,11 +9,16 @@ public class Area {
         while (radius < 1 ) {
             Scanner input = new Scanner(System.in);
             System.out.println("What is the radius of the circle?");
-            radius = input.nextDouble();
-            //input.close();
-            if (radius > 0) {
-                double areaOfCircle = Circle.getArea(radius);
-                System.out.println("The area of a circle with a " + radius + " radius is " + areaOfCircle);
+            while(input.hasNextDouble()) {
+                radius = input.nextDouble();
+                //input.close();
+                if (radius > 0) {
+                    double areaOfCircle = Circle.getArea(radius);
+                    System.out.println("The area of a circle with a " + radius + " radius is " + areaOfCircle);
+                } else {
+                    System.out.println("Please enter a valid number.");
+                    main(args);
+                }
             }
         }
     }
