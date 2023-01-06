@@ -29,7 +29,7 @@ public class Alice {
             If we wanted to print out what was at that index location
              System.out.println(str.substring(i, i+word.length()));
              */
-            // removes ist occurrence of word
+            // removes 1st occurrence of word
             textToSearch = textToSearch.replaceFirst(word,"");
             // removes all double spaces, replaces with single space. store in a new String
             String wordRemoved = textToSearch.replaceAll("  ", " ");
