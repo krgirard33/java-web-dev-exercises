@@ -18,13 +18,13 @@ public class HashMapPractice {
 
         do {
             //System.out.println(students.size());
-
             System.out.println("Name: ");
             newStudent = input.nextLine();
-            students.put(id,newStudent);
-            id++;
-            // System.out.println(students);
-            //input.nextLine();
+
+            if(!newStudent.equals("")) {
+                students.put(id,newStudent);
+                id++;
+            }
         } while(!newStudent.equals(""));
 
         System.out.println("Class roster:");
