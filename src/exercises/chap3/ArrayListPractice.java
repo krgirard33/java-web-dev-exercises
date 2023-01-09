@@ -6,7 +6,9 @@ import java.util.Scanner;
 public class ArrayListPractice {
     public static void main(String[] args) {
         int[] base = {11,22,33,24,25,36,47,18,9,10};
-        String[] lyrics = {"I","watch","the","ripples", "change","their","size","But","never","leave","the","stream"};
+        String greeneggs = "I would not, could not, in a box. I would not, could not with a fox. I will not eat them in a house. I will not eat them with a mouse.";
+        String[] lyrics = greeneggs.replaceAll("\\p{IsPunctuation}", "").split(" ");
+
         ArrayList<Integer> testone = new ArrayList<>();
         for(int item : base) {
             testone.add(item);
