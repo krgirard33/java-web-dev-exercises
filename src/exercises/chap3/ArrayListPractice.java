@@ -1,6 +1,7 @@
 package exercises.chap3;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class ArrayListPractice {
     public static void main(String[] args) {
@@ -34,11 +35,22 @@ public class ArrayListPractice {
 
     public static String fiveLetters(ArrayList<String> testtwo){
         String savedWords = "";
+        String message;
+        Scanner input = new Scanner(System.in);
+        System.out.println("How long a word do you want?");
+        int userNum = input.nextInt();
+        input.close();
+
         for (String word : testtwo) {
-            if (word.length() == 5) {
+            if (userNum == word.length()) {
                 savedWords += word+", ";
             }
         }
-        return savedWords;
+        if (savedWords.length() == 0) {
+            message = "There are no "+userNum+" letter length words.";
+        } else {
+            message = "The following words are "+userNum+" letters long: "+savedWords;
+        }
+        return message;
     }
 }
