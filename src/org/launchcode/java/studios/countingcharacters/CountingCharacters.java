@@ -23,15 +23,14 @@ public class CountingCharacters {
 
     public static void characterCount(String args){
         HashMap<Character, Integer> charMap = new HashMap<>();
-
+        args = args.toUpperCase().replaceAll("\\p{IsPunctuation} | \\p{Space}", "");
         char[] charactersInString = args.toCharArray();
 
         for (char c : charactersInString) {
             if (charMap.containsKey(c)) {
-                charMap.put(c, charMap.get(c)+1);
-            }
-            else {
-                charMap.put(c,1);
+                charMap.put(c, charMap.get(c) + 1);
+            } else {
+                charMap.put(c, 1);
             }
         }
         System.out.println("Character Count");
