@@ -22,6 +22,7 @@ public class ArrayListPractice {
         }
         System.out.println(fiveLetters(testtwo));
     }
+    // Write a static method to find the sum of all the even numbers in an ArrayList. Within main, create a list with at least 10 integers and call your method on the list.
     public static int sumEvens(ArrayList<Integer> testone) {
         int sum = 0;
         // int total = 0;
