@@ -17,14 +17,20 @@ public class Area {
                         double areaOfCircle = Circle.getArea(radius);
                         System.out.println("The area of a circle with a " + radius + " radius is " + areaOfCircle);
                     } else {
-                        System.out.println("Please enter a valid number.");
-                        main(args);
+                        System.out.println("Positive numbers only");
                     }
+
+                } else {
+                    System.out.println("Please enter a valid number.");
+                    main(args);
                 }
+                //stop=0;
+                System.out.println("Would you like to run again? (1 to run or 0 to end)");
+                stop = input.nextInt();
             }
-            System.out.println("Would you like to run again? (1 to run or 0 to end)");
-            stop = input.nextInt();
+
         } while (stop == 1);
         input.close();
     }
 }
+
