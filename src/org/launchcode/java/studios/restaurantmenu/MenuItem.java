@@ -1,6 +1,8 @@
 package org.launchcode.java.studios.restaurantmenu;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class MenuItem {
 
@@ -19,7 +21,12 @@ public class MenuItem {
     private double itemPrice;
     private Date addedDate;
 
-    private MenuItem(String itemName, String itemCategory, String itemDescription, Double itemPrice) {
+    // The next 3 lines format the date to 12-31-2023
+    private String pattern = "MM-dd-yyyy";
+    private Locale loc = new Locale("en","US");
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, loc);
+
+    MenuItem(String itemName, String itemCategory, String itemDescription, Double itemPrice) {
         this.itemName = itemName;
         this.itemCategory = itemCategory;
         this.itemDescription = itemDescription;
@@ -65,5 +72,17 @@ public class MenuItem {
 
     public void setAddedDate(Date addedDate) {
         this.addedDate = addedDate;
+    }
+
+    @Override
+    // And suddenly I realize this is where the item is being printed from.
+    public String toString() {
+
+        return "\r\n*****\r\n" +
+                "Name: " + itemName + "\t | \t" +
+                "Category: " + itemCategory + "\r\n" +
+                "Description: " + itemDescription + "\r\n" +
+                "Price: $" + itemPrice +
+                "\t|\tAdded Date: " + simpleDateFormat.format(addedDate) + "\r\n";
     }
 }
