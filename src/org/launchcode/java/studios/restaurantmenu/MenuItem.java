@@ -1,8 +1,9 @@
 package org.launchcode.java.studios.restaurantmenu;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Locale;
+import java.time.temporal.ChronoUnit;
 
 public class MenuItem {
 
@@ -19,19 +20,26 @@ public class MenuItem {
     private String itemCategory;
     private String itemDescription;
     private double itemPrice;
-    private Date addedDate;
+    private final LocalDate addedDate;
 
     // The next 3 lines format the date to 12-31-2023
+    /*
     private String pattern = "MM-dd-yyyy";
     private Locale loc = new Locale("en","US");
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, loc);
+     */
 
     MenuItem(String itemName, String itemCategory, String itemDescription, Double itemPrice) {
         this.itemName = itemName;
         this.itemCategory = itemCategory;
         this.itemDescription = itemDescription;
         this.itemPrice = itemPrice;
-        this.addedDate = new Date();
+        //this.addedDate = LocalDate.now();
+        // Use line below instead of line above to test isNew() returning false
+        this.addedDate = LocalDate.parse("2022-06-12");
+        /*
+            About the LocalDate class: https://www.w3schools.com/java/java_date.asp
+        */
     }
 
     public String getItemName() {
@@ -66,23 +74,45 @@ public class MenuItem {
         this.itemPrice = itemPrice;
     }
 
-    public Date getAddedDate() {
+    public LocalDate getAddedDate() {
         return addedDate;
     }
 
-    public void setAddedDate(Date addedDate) {
-        this.addedDate = addedDate;
-    }
-
     @Override
-    // And suddenly I realize this is where the item is being printed from.
     public String toString() {
-
-        return "\r\n*****\r\n" +
-                "Name: " + itemName + "\t | \t" +
-                "Category: " + itemCategory + "\r\n" +
-                "Description: " + itemDescription + "\r\n" +
-                "Price: $" + itemPrice +
-                "\t|\tAdded Date: " + simpleDateFormat.format(addedDate) + "\r\n";
+        String newText = isNew() ? " - NEW!" : "";
+        return itemName + newText + '\n' +
+                itemDescription + " | $" + itemPrice;
     }
+    // Define custom equals() method
+    @Override
+    public boolean equals(Object toBeCompared) {
+        // Reference check
+        if (this == toBeCompared) {
+            return true;
+        }
+
+        // Null check
+        if (toBeCompared == null) {
+            return false;
+        }
+
+        // Class check
+        if (getClass() != toBeCompared.getClass()) {
+            return false;
+        }
+
+        MenuItem otherItem = (MenuItem) toBeCompared;
+
+        return this.itemName.equals(otherItem.getItemName());
+    }
+
+    // Define instance method isNew()
+    boolean isNew() {
+        LocalDate today = LocalDate.now();
+        double daysBetween = addedDate.until(today, ChronoUnit.DAYS);
+        System.out.println(daysBetween + " days since " + itemName + " was added");
+        return daysBetween < 90;
+    }
+
 }
