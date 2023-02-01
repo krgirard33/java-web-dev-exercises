@@ -19,6 +19,7 @@ public class Flavor extends Ingredient {
     }
 
     public static void printFlavors(ArrayList<Flavor> flavors) {
+        System.out.println("\r\n*** FLAVORS ***");
         StringBuilder flavorsList = new StringBuilder();
         for (Flavor flavor: flavors) {
             flavorsList.append("\r\n"+flavor);

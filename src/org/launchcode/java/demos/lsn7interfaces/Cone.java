@@ -23,7 +23,7 @@ public class Cone extends Ingredient {
     }
 
     public static void printCones(ArrayList<Cone> cones) {
-
+        System.out.println("\r\n*** CONES ***");
         StringBuilder conesList = new StringBuilder();
         for (Cone cone: cones) {
             conesList.append("\r\n"+cone);
